@@ -1,0 +1,21 @@
+repos:
+  - repo: git@github.com:cerberos-dev/cerberos-pre-commit.git
+    rev: 1.0.1
+    hooks:
+      - id: php-cs
+
+  - repo: git@github.com:cerberos-dev/cerberos-pre-commit.git
+    rev: 1.0.1
+    hooks:
+      - id: php-cbf
+
+  - repo: git@github.com:cerberos-dev/cerberos-pre-commit.git
+    rev: 1.0.1
+    hooks:
+      - id: php-unit
+
+  - repo: git@github.com:cerberos-dev/cerberos-pre-commit.git
+    rev: 1.0.1
+    hooks:
+      - id: php-sec
+
