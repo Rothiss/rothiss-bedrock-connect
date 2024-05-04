@@ -1,0 +1,45 @@
+services:
+    bedrock_connect:
+        image: strausmann/minecraft-bedrock-connect:latest
+        container_name: ${SERVER_NAME:-rothiss_minecraft}_bedrock_connect
+        networks:
+            - minecraft
+        ports:
+            - ${BEDROCK_CONNECT_PORT:-19132}:19132
+        volumes:
+            - ./data:/data
+        restart: unless-stopped
+        logging:
+            options:
+                max-size: "10m"
+                max-file: "3"
+        tty: true
+        stdin_open: true
+        environment:
+            JAVA_XMS: ${JAVA_XMS:-256M}
+            JAVA_XMX: ${JAVA_XMX:-256M}
+
+            CUSTOM_SERVERS: ./serverlist.json
+            WHITELIST: ./whitelist.json
+
+            BRC_VERSION: ${BEDROCK_CONNECT_VERSION:-latest}
+
+            NODB: ${BEDROCK_CONNECT_MYSQL_DISABLED:-true}
+
+            MYSQL_HOST: ${BEDROCK_CONNECT_MYSQL_HOST:-}
+            MYSQL_DB: ${BEDROCK_CONNECT_MYSQL_DB:-}
+            MYSQL_USER: ${BEDROCK_CONNECT_MYSQL_USER:-}
+            MYSQL_PASS: ${BEDROCK_CONNECT_MYSQL_PASS:-}
+
+            USER_SERVERS: ${BEDROCK_CONNECT_USER_SERVERS:-false}
+            FEATURED_SERVERS: ${BEDROCK_CONNECT_FEATURED_SERVERS:-false}
+
+            KICK_INACTIVE: ${BEDROCK_CONNECT_KICK_INACTIVE:-false}
+            SERVER_LIMIT: ${BEDROCK_CONNECT_LIMIT:-25}
+
+            FETCH_FEATURED_IPS: ${BEDROCK_CONNECT_FETCH_FEATURED_IPS:-true}
+
+networks:
+    minecraft:
+        name: ${NETWORK_NAME:-rothiss_minecraft}
+        external: true

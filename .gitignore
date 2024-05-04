@@ -85,3 +85,5 @@ auth.json
 
 # Project folders and files #
 #############################
+/settings/serverlist.json
+/settings/whitelist.json
